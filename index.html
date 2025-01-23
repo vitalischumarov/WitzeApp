@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Rubik+Puddles&family=Trade+Winds&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./src/style.css" />
+        <title>Witze App</title>
+    </head>
+    <body>
+        <div class="mainContainer">
+            <h1 class="title">Witze App</h1>
+            <div class="jokeBox">
+                <span class="jokeBox__joke text"
+                    >Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Soluta nisi, dolores vero minima accusamus.</span
+                >
+                <div class="buttons">
+                    <button class="buttons__newBtn">Neuen Witz laden</button>
+                    <button class="buttons__saveBtn">
+                        Witz speichern
+                        <svg
+                            class="saveSymbol"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="savedJokes">
+                <h2>Gespeicherte Witze</h2>
+                <div class="savedJokeBox">
+                    <span class="savedJokeBox__joke text"
+                        >Das ist ein Witz...</span
+                    >
+                    <button class="savedJokeBox__deleteJoke">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="symbol"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m3 3 1.664 1.664M21 21l-1.5-1.5m-5.485-1.242L12 17.25 4.5 21V8.742m.164-4.078a2.15 2.15 0 0 1 1.743-1.342 48.507 48.507 0 0 1 11.186 0c1.1.128 1.907 1.077 1.907 2.185V19.5M4.664 4.664 19.5 19.5"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>

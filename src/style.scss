@@ -1,0 +1,174 @@
+@use "_variables" as *;
+
+body {
+    background-color: $bg-color;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.title {
+    color: rgb(22 246 74);
+    font-size: 3rem;
+    font-family: "Rubik Puddles", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+.jokeBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $lightBgColor;
+    width: 90%;
+
+    &__joke {
+        color: white;
+        padding: 2rem;
+    }
+}
+
+.buttons {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+
+    &__newBtn {
+        margin-bottom: 1rem;
+        padding: 1rem 4rem 1rem 4rem;
+        background-color: $displayColor;
+        font-size: 1rem;
+        border-radius: 5px;
+        height: 4rem;
+    }
+
+    &__newBtn:hover {
+        background-color: rgb(4 194 69);
+        cursor: pointer;
+    }
+
+    &__saveBtn {
+        margin-bottom: 1rem;
+        padding: 1rem 4rem 1rem 4rem;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid $displayColor 1px;
+        color: $displayColor;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        height: 4rem;
+    }
+
+    &__saveBtn:hover {
+        background-color: $displayColor;
+        border-radius: 5px;
+        color: black;
+        .saveSymbol {
+            color: black;
+        }
+        cursor: pointer;
+    }
+}
+
+.savedJokes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 1rem;
+}
+
+.savedJokeBox {
+    background-color: $lightBgColor;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+
+    &__joke {
+        display: inline-block;
+        width: 80%;
+        color: white;
+    }
+
+    &__deleteJoke {
+        background-color: transparent;
+        border: 0;
+    }
+
+    &__deleteJoke:hover {
+        cursor: pointer;
+        .symbol {
+            background-color: darkred;
+        }
+    }
+}
+
+.symbol {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+h2 {
+    color: white;
+    font-size: 2rem;
+    font-family: "Trade Winds", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.text {
+    font-family: "Boogaloo", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+}
+@media screen and (min-width: 900px) {
+    .title {
+        font-size: 5rem;
+    }
+
+    .text {
+        font-size: 1.4rem;
+    }
+    .buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .jokeBox {
+        max-width: 1000px;
+    }
+
+    .savedJokeBox {
+        max-width: 800px;
+        height: 7rem;
+    }
+
+    .buttons {
+        margin-bottom: 1rem;
+    }
+
+    .symbol {
+        height: 3rem;
+        width: 3rem;
+    }
+}
