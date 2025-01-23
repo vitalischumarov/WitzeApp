@@ -1,20 +1,18 @@
 import { fetchData } from "./api";
 
-const url = "https://witzapi.de/api/joke/?limit=1&language=de";
 let newJoke = "";
 
 async function loadNewJoke() {
-  console.log("klick");
-  let data = await fetchData(url);
-  console.log(data);
-  displayNewJoke(data);
+  let joke = await fetchData();
+  displayNewJoke(joke);
 }
 
-function displayNewJoke(newJoke) {
+function displayNewJoke(nextJoke) {
   let joke = document.querySelector(".jokeBox__joke");
-  joke.innerHTML = newJoke;
+  joke.innerHTML = nextJoke;
 }
 
+// Event Listener
 document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelector(".buttons__newBtn")
