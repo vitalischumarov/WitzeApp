@@ -3,6 +3,7 @@ import { fetchData } from "./api";
 let firstJokeLoaded = false;
 let isJokeSaved = false;
 let allSavedJokes = [];
+let testarry = [];
 
 displayLoadedJokes();
 
@@ -61,14 +62,14 @@ function generateNumericId() {
 
 function addJokeToList(joke) {
   console.log(`joke ${joke.text}`);
-  let testarry = [];
-  testarry.push(joke);
-  // allSavedJokes.push(joke);
+  allSavedJokes.push(joke);
+  console.log(allSavedJokes.length);
   let formatedJokes = JSON.stringify(allSavedJokes);
   localStorage.setItem("jokes", formatedJokes);
 }
 
 function loadJokes() {
+  console.log("loaded Jokes");
   const loadedJokes = JSON.parse(localStorage.getItem("jokes"));
   allSavedJokes = loadedJokes;
   return allSavedJokes;
