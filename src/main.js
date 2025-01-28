@@ -52,7 +52,13 @@ function generateNumericId() {
 function addJokeToList(joke) {
   console.log(`joke ${joke.text}`);
   allSavedJokes.push(joke);
-  let formatedJokes = JSON.stringify(allSavedJokes);
+  saveListToLocalStorage(allSavedJokes);
+  // let formatedJokes = JSON.stringify(allSavedJokes);
+  // localStorage.setItem("jokes", formatedJokes);
+}
+
+function saveListToLocalStorage(list) {
+  let formatedJokes = JSON.stringify(list);
   localStorage.setItem("jokes", formatedJokes);
 }
 
@@ -75,7 +81,7 @@ function displayLoadedJokes() {
 }
 
 function createSavedJokeUI(joke) {
-  let id = generateNumericId();
+  let id = joke.id;
   let html = `
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -102,25 +108,63 @@ function createSavedJokeUI(joke) {
   savedJokeBox__joke.appendChild(jokeText);
   const button = document.createElement("button");
   button.classList.add("savedJokeBox__deleteJoke");
+  button.setAttribute("id", id);
+
   button.innerHTML = html;
 
   document.querySelector(".savedJokes").appendChild(savedJokeBox);
   document.getElementById(id).appendChild(button);
+  button.addEventListener("click", () => {
+    console.log(`chosen this id: ${id}`);
+    deleteJoke(id);
+  });
 }
 
 function deleteJoke(id) {
   console.log(`diese id wurde ausgewählt: ${id}`);
+  let elementToRemove = document.getElementById(id);
+  removeElementFromList(id);
+  elementToRemove.remove();
+}
+
+function removeElementFromList(id) {
+  for (let i = 0; i < allSavedJokes.length; i++) {
+    if (allSavedJokes[i].id == id) {
+      console.log(`elements before: ${allSavedJokes.length}`);
+      allSavedJokes.splice([i], 1);
+      console.log(`elements after: ${allSavedJokes.length}`);
+      saveListToLocalStorage(allSavedJokes);
+    } else {
+      console.log(`${allSavedJokes[i].id} === ${id}`);
+    }
+  }
 }
 
 // Event Listener
-document.addEventListener("DOMContentLoaded", () => {
-  document
-    .querySelector(".buttons__saveBtn")
-    .addEventListener("click", saveJoke);
-  document
-    .querySelector(".buttons__newBtn")
-    .addEventListener("click", loadNewJoke);
-  document
-    .querySelector(".savedJokeBox__deleteJoke")
-    .addEventListener("click", deleteJoke);
+const newJokeButton = document.querySelector(".buttons__newBtn");
+newJokeButton.addEventListener("click", () => {
+  loadNewJoke();
 });
+
+const saveJokeButton = document.querySelector(".buttons__saveBtn");
+saveJokeButton.addEventListener("click", () => {
+  saveJoke();
+});
+
+// const deleteJokeButton = document.querySelector(".savedJokeBox__deleteJoke");
+// deleteJokeButton.addEventListener("click", (event) => {
+//   const jokeID = event.target.id;
+//   deleteJoke(jokeID);
+// });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   document
+//     .querySelector(".buttons__saveBtn")
+//     .addEventListener("click", saveJoke);
+//   document
+//     .querySelector(".buttons__newBtn")
+//     .addEventListener("click", loadNewJoke);
+// document
+//   .querySelector(".savedJokeBox__deleteJoke")
+//   .addEventListener("click", deleteJoke);
+// });
