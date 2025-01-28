@@ -1,4 +1,5 @@
 import { fetchData } from "./api";
+import { saveListToLocalStorage } from "./localStorage";
 
 let firstJokeLoaded = false;
 let isJokeSaved = false;
@@ -53,13 +54,6 @@ function addJokeToList(joke) {
   console.log(`joke ${joke.text}`);
   allSavedJokes.push(joke);
   saveListToLocalStorage(allSavedJokes);
-  // let formatedJokes = JSON.stringify(allSavedJokes);
-  // localStorage.setItem("jokes", formatedJokes);
-}
-
-function saveListToLocalStorage(list) {
-  let formatedJokes = JSON.stringify(list);
-  localStorage.setItem("jokes", formatedJokes);
 }
 
 function loadJokes() {
@@ -150,21 +144,3 @@ const saveJokeButton = document.querySelector(".buttons__saveBtn");
 saveJokeButton.addEventListener("click", () => {
   saveJoke();
 });
-
-// const deleteJokeButton = document.querySelector(".savedJokeBox__deleteJoke");
-// deleteJokeButton.addEventListener("click", (event) => {
-//   const jokeID = event.target.id;
-//   deleteJoke(jokeID);
-// });
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   document
-//     .querySelector(".buttons__saveBtn")
-//     .addEventListener("click", saveJoke);
-//   document
-//     .querySelector(".buttons__newBtn")
-//     .addEventListener("click", loadNewJoke);
-// document
-//   .querySelector(".savedJokeBox__deleteJoke")
-//   .addEventListener("click", deleteJoke);
-// });

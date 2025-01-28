@@ -58,7 +58,6 @@ body {
     &__saveBtn {
         margin-bottom: 1rem;
         padding: 1rem 4rem 1rem 4rem;
-        font-size: 1rem;
         background-color: transparent;
         border: solid $displayColor 1px;
         color: $displayColor;
@@ -77,6 +76,10 @@ body {
         }
         cursor: pointer;
     }
+}
+
+.styleBtn {
+    font-size: 1.5rem;
 }
 
 .save_Btn_detail {
@@ -143,8 +146,9 @@ h2 {
     font-family: "Boogaloo", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
+
 @media screen and (min-width: 900px) {
     .title {
         font-size: 5rem;
