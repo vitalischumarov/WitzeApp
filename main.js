@@ -1,5 +1,6 @@
 import { fetchData } from "./src/api";
 import { saveListToLocalStorage } from "./src/localStorage";
+import "./src/style.scss";
 
 let firstJokeLoaded = false;
 let isJokeSaved = false;
