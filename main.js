@@ -5,8 +5,6 @@ let firstJokeLoaded = false;
 let isJokeSaved = false;
 let allSavedJokes = [];
 
-displayLoadedJokes();
-
 async function loadNewJoke() {
   let joke = await fetchData();
   displayNewJoke(joke);
@@ -61,7 +59,7 @@ function loadJokes() {
 
 function displayLoadedJokes() {
   let allJokes = loadJokes();
-  if (allJokes.length === 0) {
+  if (allJokes === null) {
     allSavedJokes = [];
     displayNoJokes();
     return;
@@ -157,3 +155,5 @@ saveJokeButton.addEventListener("click", () => {
   checkIfJokesAvailable();
   saveJoke();
 });
+
+displayLoadedJokes();
