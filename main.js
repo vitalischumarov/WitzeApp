@@ -1,5 +1,5 @@
-import { fetchData } from "./api";
-import { saveListToLocalStorage } from "./localStorage";
+import { fetchData } from "./src/api";
+import { saveListToLocalStorage } from "./src/localStorage";
 
 let firstJokeLoaded = false;
 let isJokeSaved = false;
