@@ -59,7 +59,12 @@ function loadJokes() {
 
 function displayLoadedJokes() {
   let allJokes = loadJokes();
+  console.log(allJokes === null);
   if (allJokes === null) {
+    allSavedJokes = [];
+    displayNoJokes();
+    return;
+  } else if (allJokes.length === 0) {
     allSavedJokes = [];
     displayNoJokes();
     return;
