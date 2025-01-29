@@ -8,7 +8,6 @@ let allSavedJokes = [];
 displayLoadedJokes();
 
 async function loadNewJoke() {
-  console.log("clicked");
   let joke = await fetchData();
   displayNewJoke(joke);
   isJokeSaved = false;
@@ -41,7 +40,6 @@ function saveJoke() {
     text: jokeWantToSave,
     id: jokeID,
   };
-  console.log(joke);
   addJokeToList(joke);
   createSavedJokeUI(joke);
 }
@@ -51,13 +49,11 @@ function generateNumericId() {
 }
 
 function addJokeToList(joke) {
-  console.log(`joke ${joke.text}`);
   allSavedJokes.push(joke);
   saveListToLocalStorage(allSavedJokes);
 }
 
 function loadJokes() {
-  console.log("loaded Jokes");
   const loadedJokes = JSON.parse(localStorage.getItem("jokes"));
   allSavedJokes = loadedJokes;
   return allSavedJokes;
@@ -65,8 +61,9 @@ function loadJokes() {
 
 function displayLoadedJokes() {
   let allJokes = loadJokes();
-  if (allJokes === null) {
+  if (allJokes.length === 0) {
     allSavedJokes = [];
+    displayNoJokes();
     return;
   }
   for (let i = 0; i < allJokes.length; i++) {
@@ -75,6 +72,7 @@ function displayLoadedJokes() {
 }
 
 function createSavedJokeUI(joke) {
+  document.querySelector(".noJokeMsg");
   let id = joke.id;
   let html = `
     <svg
@@ -109,27 +107,41 @@ function createSavedJokeUI(joke) {
   document.querySelector(".savedJokes").appendChild(savedJokeBox);
   document.getElementById(id).appendChild(button);
   button.addEventListener("click", () => {
-    console.log(`chosen this id: ${id}`);
     deleteJoke(id);
   });
 }
 
+function displayNoJokes() {
+  let textElement = document.createElement("span");
+  textElement.setAttribute("class", "text");
+  textElement.setAttribute("class", "noJokeMsg");
+  textElement.innerHTML = "keine Witze gespeichert";
+  document.querySelector(".savedJokes").appendChild(textElement);
+}
+
+function checkIfJokesAvailable() {
+  console.log(document.querySelector(".noJokeMsg") === null);
+  if (document.querySelector(".noJokeMsg") !== null) {
+    console.log("remove joke");
+    document.querySelector(".noJokeMsg").remove();
+  }
+}
+
 function deleteJoke(id) {
-  console.log(`diese id wurde ausgewählt: ${id}`);
   let elementToRemove = document.getElementById(id);
   removeElementFromList(id);
   elementToRemove.remove();
+  if (allSavedJokes.length === 0) {
+    displayNoJokes();
+  }
 }
 
 function removeElementFromList(id) {
   for (let i = 0; i < allSavedJokes.length; i++) {
     if (allSavedJokes[i].id == id) {
-      console.log(`elements before: ${allSavedJokes.length}`);
       allSavedJokes.splice([i], 1);
-      console.log(`elements after: ${allSavedJokes.length}`);
       saveListToLocalStorage(allSavedJokes);
     } else {
-      console.log(`${allSavedJokes[i].id} === ${id}`);
     }
   }
 }
@@ -142,5 +154,6 @@ newJokeButton.addEventListener("click", () => {
 
 const saveJokeButton = document.querySelector(".buttons__saveBtn");
 saveJokeButton.addEventListener("click", () => {
+  checkIfJokesAvailable();
   saveJoke();
 });
