@@ -26,7 +26,7 @@ function displaySaveJokeButton() {
   }
   firstJokeLoaded = true;
   let saveButton = document.querySelector(".buttons__saveBtn");
-  saveButton.style.display = "block";
+  saveButton.style.display = "flex";
 }
 
 function saveJoke() {
